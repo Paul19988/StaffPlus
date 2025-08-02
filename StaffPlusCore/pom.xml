@@ -63,7 +63,7 @@
                             </filters>
                             <relocations>
                                 <relocation>
-                                   <pattern>com.zaxxer.hikari</pattern>
+                                    <pattern>com.zaxxer.hikari</pattern>
                                     <shadedPattern>net.shortninja.hikari</shadedPattern>
                                 </relocation>
                             </relocations>
@@ -88,123 +88,13 @@
             <artifactId>StaffPlusAPI</artifactId>
             <version>3.3.14.2</version>
         </dependency>
+
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_7_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
 
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_7_R2</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_7_R3</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_7_R4</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_8_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_8_R2</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_8_R3</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_9_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_9_R2</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_10_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_11_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_12_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_13_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_13_R2</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_14_R1</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-      
-        <dependency>
-        <groupId>net.shortninja.staffplus</groupId>
-        <artifactId>v1_15_R1</artifactId>
-        <version>${project.parent.version}</version>
-        </dependency>
-		
-		<dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_16_R1</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-		
-		<dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_16_R2</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_16_R4</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_17_R1</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-            <classifier>remapped-spigot</classifier>
-        </dependency>
         <dependency>
             <groupId>org.inventivetalent.spiget-update</groupId>
             <artifactId>bukkit</artifactId>
@@ -217,71 +107,71 @@
                 </exclusion>
             </exclusions>
         </dependency>
-       <!-- <dependency>
-            <groupId>org.inventivetalent</groupId>
-            <artifactId>apimanager</artifactId>
-            <version>1.0.2</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>bukkit</artifactId>
-                    <groupId>org.bukkit</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>craftbukkit</artifactId>
-                    <groupId>org.bukkit</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.inventivetalent.packetlistener</groupId>
-            <artifactId>api</artifactId>
-            <version>3.7.8-SNAPSHOT</version>
-        </dependency>
-        <dependency>
+        <!-- <dependency>
+             <groupId>org.inventivetalent</groupId>
+             <artifactId>apimanager</artifactId>
+             <version>1.0.2</version>
+             <exclusions>
+                 <exclusion>
+                     <artifactId>bukkit</artifactId>
+                     <groupId>org.bukkit</groupId>
+                 </exclusion>
+                 <exclusion>
+                     <artifactId>craftbukkit</artifactId>
+                     <groupId>org.bukkit</groupId>
+                 </exclusion>
+             </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.inventivetalent.packetlistener</groupId>
+             <artifactId>api</artifactId>
+             <version>3.7.8-SNAPSHOT</version>
+         </dependency>
+         <dependency>
 
-        <groupId>org.inventivetalent.packetlistener</groupId>
-        <artifactId>1_7</artifactId>
-        <version>3.7.8-SNAPSHOT</version>
-        <exclusions>
-            <exclusion>
-                <artifactId>craftbukkit</artifactId>
-                <groupId>org.bukkit</groupId>
-            </exclusion>
-        </exclusions>
-    </dependency>
-    <dependency>
-        <groupId>org.inventivetalent.packetlistener</groupId>
-        <artifactId>1_8</artifactId>
-        <version>3.7.8-SNAPSHOT</version>
-        <exclusions>
-            <exclusion>
-                <artifactId>craftbukkit</artifactId>
-                <groupId>org.bukkit</groupId>
-            </exclusion>
-        </exclusions>
-    </dependency>
-        <dependency>
-            <groupId>org.inventivetalent.packetlistener</groupId>
-            <artifactId>1_7</artifactId>
-            <version>3.7.8-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>craftbukkit</artifactId>
-                    <groupId>org.bukkit</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.inventivetalent.packetlistener</groupId>
-            <artifactId>1_8</artifactId>
-            <version>3.7.8-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>craftbukkit</artifactId>
-                    <groupId>org.bukkit</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
+         <groupId>org.inventivetalent.packetlistener</groupId>
+         <artifactId>1_7</artifactId>
+         <version>3.7.8-SNAPSHOT</version>
+         <exclusions>
+             <exclusion>
+                 <artifactId>craftbukkit</artifactId>
+                 <groupId>org.bukkit</groupId>
+             </exclusion>
+         </exclusions>
+     </dependency>
+     <dependency>
+         <groupId>org.inventivetalent.packetlistener</groupId>
+         <artifactId>1_8</artifactId>
+         <version>3.7.8-SNAPSHOT</version>
+         <exclusions>
+             <exclusion>
+                 <artifactId>craftbukkit</artifactId>
+                 <groupId>org.bukkit</groupId>
+             </exclusion>
+         </exclusions>
+     </dependency>
+         <dependency>
+             <groupId>org.inventivetalent.packetlistener</groupId>
+             <artifactId>1_7</artifactId>
+             <version>3.7.8-SNAPSHOT</version>
+             <exclusions>
+                 <exclusion>
+                     <artifactId>craftbukkit</artifactId>
+                     <groupId>org.bukkit</groupId>
+                 </exclusion>
+             </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.inventivetalent.packetlistener</groupId>
+             <artifactId>1_8</artifactId>
+             <version>3.7.8-SNAPSHOT</version>
+             <exclusions>
+                 <exclusion>
+                     <artifactId>craftbukkit</artifactId>
+                     <groupId>org.bukkit</groupId>
+                 </exclusion>
+             </exclusions>
+         </dependency>-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
@@ -311,11 +201,6 @@
             <version>0.8.0</version>
         </dependency>
         <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_14_R2</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
             <version>1.14.4-R0.1-SNAPSHOT</version>
@@ -337,84 +222,18 @@
         </dependency>
         <dependency>
             <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_16_R3</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_16_R3</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_18_R1</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_18_R1</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_18_R2</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_19_R1</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
             <artifactId>StaffPlusBungee</artifactId>
             <version>3.3.14.2</version>
         </dependency>
         <dependency>
             <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_19_R2</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_20_R3</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_20_R4</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_20_R1</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_21_R1</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
-            <artifactId>v1_19_R3</artifactId>
-            <version>3.3.14.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.shortninja.staffplus</groupId>
             <artifactId>v1_21_R3</artifactId>
+            <version>3.3.14.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.shortninja.staffplus</groupId>
+            <artifactId>v1_21_R4</artifactId>
             <version>3.3.14.2</version>
             <scope>compile</scope>
         </dependency>

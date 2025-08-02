@@ -6,50 +6,56 @@ import net.shortninja.staffplus.player.attribute.SecurityHandler;
 import net.shortninja.staffplus.player.attribute.TicketHandler;
 import net.shortninja.staffplus.player.attribute.infraction.InfractionCoordinator;
 import net.shortninja.staffplus.player.attribute.mode.ModeCoordinator;
-import net.shortninja.staffplus.player.attribute.mode.handler.*;
+import net.shortninja.staffplus.player.attribute.mode.handler.CpsHandler;
+import net.shortninja.staffplus.player.attribute.mode.handler.FreezeHandler;
+import net.shortninja.staffplus.player.attribute.mode.handler.GadgetHandler;
+import net.shortninja.staffplus.player.attribute.mode.handler.InventoryHandler;
+import net.shortninja.staffplus.player.attribute.mode.handler.ReviveHandler;
+import net.shortninja.staffplus.player.attribute.mode.handler.VanishHandler;
 import net.shortninja.staffplus.server.AlertCoordinator;
 import net.shortninja.staffplus.server.PacketModifier;
 import net.shortninja.staffplus.server.chat.ChatHandler;
 import net.shortninja.staffplus.server.command.CmdHandler;
-
 import net.shortninja.staffplus.server.compatibility.IProtocol;
-import net.shortninja.staffplus.server.compatibility.v1_10_R1.Protocol_v1_10_R1;
-import net.shortninja.staffplus.server.compatibility.v1_11_R1.Protocol_v1_11_R1;
-import net.shortninja.staffplus.server.compatibility.v1_12_R1.Protocol_v1_12_R1;
-import net.shortninja.staffplus.server.compatibility.v1_13_R1.Protocol_v1_13_R1;
-import net.shortninja.staffplus.server.compatibility.v1_13_R2.Protocol_v1_13_R2;
-import net.shortninja.staffplus.server.compatibility.v1_14_R1.Protocol_v1_14_R1;
-import net.shortninja.staffplus.server.compatibility.v1_14_R2.Protocol_v1_14_R2;
-import net.shortninja.staffplus.server.compatibility.v1_1x.*;
-import net.shortninja.staffplus.server.compatibility.v1_7_R1.Protocol_v1_7_R1;
-import net.shortninja.staffplus.server.compatibility.v1_7_R2.Protocol_v1_7_R2;
-import net.shortninja.staffplus.server.compatibility.v1_7_R3.Protocol_v1_7_R3;
-import net.shortninja.staffplus.server.compatibility.v1_7_R4.Protocol_v1_7_R4;
-import net.shortninja.staffplus.server.compatibility.v1_8_R1.Protocol_v1_8_R1;
-import net.shortninja.staffplus.server.compatibility.v1_8_R2.Protocol_v1_8_R2;
-import net.shortninja.staffplus.server.compatibility.v1_8_R3.Protocol_v1_8_R3;
-import net.shortninja.staffplus.server.compatibility.v1_9_R1.Protocol_v1_9_R1;
-import net.shortninja.staffplus.server.compatibility.v1_9_R2.Protocol_v1_9_R2;
-import net.shortninja.staffplus.server.data.*;
-import net.shortninja.staffplus.server.data.storage.FlatFileStorage;
-import net.shortninja.staffplus.server.data.storage.IStorage;
-import net.shortninja.staffplus.server.data.storage.MemoryStorage;
-import net.shortninja.staffplus.server.data.storage.MySQLStorage;
+import net.shortninja.staffplus.server.compatibility.v1_1x.Protocol_v1_21_R3;
+import net.shortninja.staffplus.server.compatibility.v1_1x.Protocol_v1_21_R4;
+import net.shortninja.staffplus.server.data.Load;
+import net.shortninja.staffplus.server.data.MySQLConnection;
+import net.shortninja.staffplus.server.data.Save;
 import net.shortninja.staffplus.server.data.config.IOptions;
 import net.shortninja.staffplus.server.data.config.Messages;
 import net.shortninja.staffplus.server.data.config.Options;
 import net.shortninja.staffplus.server.data.file.ChangelogFile;
 import net.shortninja.staffplus.server.data.file.DataFile;
 import net.shortninja.staffplus.server.data.file.LanguageFile;
+import net.shortninja.staffplus.server.data.storage.FlatFileStorage;
+import net.shortninja.staffplus.server.data.storage.IStorage;
+import net.shortninja.staffplus.server.data.storage.MemoryStorage;
+import net.shortninja.staffplus.server.data.storage.MySQLStorage;
 import net.shortninja.staffplus.server.hook.HookHandler;
 import net.shortninja.staffplus.server.hook.PAPIExpansion;
 import net.shortninja.staffplus.server.hook.SuperVanishHook;
-import net.shortninja.staffplus.server.listener.*;
+import net.shortninja.staffplus.server.listener.BlockBreak;
+import net.shortninja.staffplus.server.listener.BlockPlace;
+import net.shortninja.staffplus.server.listener.FoodLevelChange;
+import net.shortninja.staffplus.server.listener.InventoryClick;
+import net.shortninja.staffplus.server.listener.InventoryClose;
+import net.shortninja.staffplus.server.listener.InventoryOpen;
 import net.shortninja.staffplus.server.listener.entity.EntityChangeBlock;
 import net.shortninja.staffplus.server.listener.entity.EntityDamage;
 import net.shortninja.staffplus.server.listener.entity.EntityDamageByEntity;
 import net.shortninja.staffplus.server.listener.entity.EntityTarget;
-import net.shortninja.staffplus.server.listener.player.*;
+import net.shortninja.staffplus.server.listener.player.AsyncPlayerChat;
+import net.shortninja.staffplus.server.listener.player.PlayerCommandPreprocess;
+import net.shortninja.staffplus.server.listener.player.PlayerDeath;
+import net.shortninja.staffplus.server.listener.player.PlayerDropItem;
+import net.shortninja.staffplus.server.listener.player.PlayerInteract;
+import net.shortninja.staffplus.server.listener.player.PlayerJoin;
+import net.shortninja.staffplus.server.listener.player.PlayerLogin;
+import net.shortninja.staffplus.server.listener.player.PlayerPickupItem;
+import net.shortninja.staffplus.server.listener.player.PlayerQuit;
+import net.shortninja.staffplus.server.listener.player.PlayerWorldChange;
+import net.shortninja.staffplus.server.listener.player.TabComplete;
 import net.shortninja.staffplus.unordered.IUser;
 import net.shortninja.staffplus.util.MessageCoordinator;
 import net.shortninja.staffplus.util.Metrics;
@@ -62,8 +68,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-/*import org.inventivetalent.apihelper.APIManager;
-import org.inventivetalent.packetlistener.PacketListenerAPI;*/
 import org.inventivetalent.update.spiget.SpigetUpdate;
 import org.inventivetalent.update.spiget.UpdateCallback;
 import org.inventivetalent.update.spiget.comparator.VersionComparator;
@@ -149,9 +153,10 @@ public class StaffPlus extends JavaPlugin implements IStaffPlus {
         }
 
 
-        if (getConfig().getBoolean("metrics"))
+        if (getConfig().getBoolean("metrics")) {
             new Metrics(this);
-        checkUpdate();
+        }
+//        checkUpdate();
 
         storage.onEnable();
 
@@ -233,114 +238,23 @@ public class StaffPlus extends JavaPlugin implements IStaffPlus {
         getLogger().info(version);
         String formattedVersion = "";
         String bukkitVer = Bukkit.getBukkitVersion();
-        if(bukkitVer.equals("1.20.6-R0.1-SNAPSHOT"))
+
+        if (bukkitVer.equals("1.20.6-R0.1-SNAPSHOT")) {
             formattedVersion = "v1_20_R4";
-        else if(bukkitVer.equals("1.21-R0.1-SNAPSHOT")||bukkitVer.equals("1.21.1-R0.1-SNAPSHOT")||bukkitVer.equals("1.21.3-R0.1-SNAPSHOT"))
+        } else if (bukkitVer.equals("1.21-R0.1-SNAPSHOT") || bukkitVer.equals("1.21.1-R0.1-SNAPSHOT") || bukkitVer.equals("1.21.3-R0.1-SNAPSHOT")) {
             formattedVersion = "v1_21_R1";
-        else if(bukkitVer.equals("1.21.4-R0.1-SNAPSHOT"))
-            formattedVersion = "v1_21_R3";
-        else
+        } else if (bukkitVer.contains("1.21.4")) {
+            formattedVersion = "v1_21_R4";
+        } else {
             formattedVersion = version.substring(version.lastIndexOf('.') + 1);
+        }
+
         switch (formattedVersion) {
-            case "v1_7_R1":
-                versionProtocol = new Protocol_v1_7_R1(this);
-                break;
-            case "v1_7_R2":
-                versionProtocol = new Protocol_v1_7_R2(this);
-                break;
-            case "v1_7_R3":
-                versionProtocol = new Protocol_v1_7_R3(this);
-                break;
-            case "v1_7_R4":
-                versionProtocol = new Protocol_v1_7_R4(this);
-                break;
-            case "v1_8_R1":
-                versionProtocol = new Protocol_v1_8_R1(this);
-                break;
-            case "v1_8_R2":
-                versionProtocol = new Protocol_v1_8_R2(this);
-                break;
-            case "v1_8_R3":
-                versionProtocol = new Protocol_v1_8_R3(this);
-                break;
-            case "v1_9_R1":
-                versionProtocol = new Protocol_v1_9_R1(this);
-                break;
-            case "v1_9_R2":
-                versionProtocol = new Protocol_v1_9_R2(this);
-                break;
-            case "v1_10_R1":
-                versionProtocol = new Protocol_v1_10_R1(this);
-                break;
-            case "v1_11_R1":
-                versionProtocol = new Protocol_v1_11_R1(this);
-                break;
-            case "v1_12_R1":
-                versionProtocol = new Protocol_v1_12_R1(this);
-                break;
-            case "v1_13_R1":
-                versionProtocol = new Protocol_v1_13_R1(this);
-                break;
-            case "v1_13_R2":
-                versionProtocol = new Protocol_v1_13_R2(this);
-                break;
-            case "v1_14_R1":
-                String[] tmp = Bukkit.getServer().getVersion().split("MC: ");
-                String ver = tmp[tmp.length - 1].substring(0, 6);
-                if(ver.equals("1.14.3")||ver.equals("1.14.4"))
-                    versionProtocol = new Protocol_v1_14_R2(this);
-                else
-                    versionProtocol = new Protocol_v1_14_R1(this);
-                break;
-            case "v1_15_R1":
-                versionProtocol = new Protocol_v1_15_R1(this);
-                break;
-            case "v1_16_R1":
-                tmp = Bukkit.getServer().getVersion().split("MC: ");
-                ver = tmp[tmp.length - 1].substring(0, 6);
-                if(ver.equals("1.16.5"))
-                    versionProtocol = new Protocol_v1_16_R4(this);
-                else
-                    versionProtocol = new Protocol_v1_16_R1(this);
-                break;
-            case "v1_16_R2":
-                versionProtocol = new Protocol_v1_16_R2(this);
-                break;
-            case "v1_16_R3":
-                versionProtocol = new Protocol_v1_16_R3(this);
-                break;
-            case "v1_17_R1":
-                versionProtocol = new Protocol_v1_17_R1(this);
-                break;
-            case "v1_18_R1":
-                versionProtocol = new Protocol_v1_18_R1(this);
-                break;
-            case "v1_18_R2":
-                versionProtocol = new Protocol_v1_18_R2(this);
-                break;
-            case "v1_19_R1":
-                versionProtocol = new Protocol_v1_19_R1(this);
-                break;
-            case "v1_19_R2":
-                versionProtocol = new Protocol_v1_19_R2(this);
-                break;
-            case "v1_19_R3":
-                versionProtocol = new Protocol_v1_19_R3(this);
-                break;
-            case "v1_20_R1":
-                versionProtocol = new Protocol_v1_20_R1(this);
-                break;
-            case  "v1_20_R3":
-                versionProtocol  = new Protocol_v1_20_R3(this);
-                break;
-            case  "v1_20_R4":
-                versionProtocol  = new Protocol_v1_20_R4(this);
-                break;
-            case "v1_21_R1":
-                versionProtocol = new Protocol_v1_21_R1(this);
-                break;
             case "v1_21_R3":
                 versionProtocol = new Protocol_v1_21_R3(this);
+                break;
+            case "v1_21_R4":
+                versionProtocol = new Protocol_v1_21_R4(this);
                 break;
         }
 
@@ -468,7 +382,7 @@ public class StaffPlus extends JavaPlugin implements IStaffPlus {
         YamlConfiguration configuration = new Options().getConfiguration();
         LanguageFile languageFile = new LanguageFile();
         YamlConfiguration languageConfig = (YamlConfiguration) languageFile.get();
-        languageConfig.getConfigurationSection("").getKeys(false).forEach( s -> {
+        languageConfig.getConfigurationSection("").getKeys(false).forEach(s -> {
             getLogger().info(languageConfig.get(s).toString());
         });
         this.languageFile = languageFile;
